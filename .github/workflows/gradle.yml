@@ -38,17 +38,17 @@ jobs:
     
     # build한 후 프로젝트를 압축합니다.
     - name: Make zip file
-                     run: zip -r ./practice-deploy.zip .
-                     shell: bash
-
-          # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
-                     - name: Configure AWS credentials
-                       uses: aws-actions/configure-aws-credentials@v1
-                       with:
-                         aws-access-key-id: AKIAYOYNLB6VCXMT7OI
-                         aws-secret-access-key: K4eZgF2SuaT6SCdp6ExzDYyCAARVxZRsoS4XZ8B0
-                         aws-region: ap-northeast-2
-
-          # 압축한 프로젝트를 S3로 전송합니다.
-                     - name: Upload to S3
-                       run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://be-pair-35/practice-deploy.zip
+      run: zip -r ./practice-deploy.zip .
+      shell: bash
+    
+    # Access Key와 Secret Access Key를 통해 권한을 확인합니다.
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: AKIAYOYNLB6VCXMT7OI
+        aws-secret-access-key: K4eZgF2SuaT6SCdp6ExzDYyCAARVxZRsoS4XZ8B0
+        aws-region: ap-northeast-2
+    
+    # 압축한 프로젝트를 S3로 전송합니다.
+    - name: Upload to S3
+      run: aws s3 cp --region ap-northeast-2 ./practice-deploy.zip s3://be-pair-35/practice-deploy.zip
